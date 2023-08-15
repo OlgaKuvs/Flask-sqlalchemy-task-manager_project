@@ -9,15 +9,18 @@ def home():
 
 @app.route("/categories")
 def categories():
-    return render_template("categories.html")
+    # By using the .all() method, this is actually what's known as a Cursor Object
+    # To convert this Cursor Object into a standard Python list - list()
+    categories = list(Category.query.order_by(Category.category_name).all())
+    return render_template("categories.html", categories=categories)
 
-@app.route("/add_category", methods= ['GET','PUT'])
+@app.route("/add_category", methods= ['GET','POST'])
 # When a user clicks the "Add Category" button, this will use the "GET"
 # method and render the 'add_category' template.
 def add_category():
     # Once they submit the form, this will call the same function, but will check if the request
     # being made is a “POST“ method, which posts data to a database.
-    if request.method == 'PUT':
+    if request.method == 'POST':
         category = Category(category_name=request.form.get("category_name"))
         db.session.add(category)
         db.session.commit()
