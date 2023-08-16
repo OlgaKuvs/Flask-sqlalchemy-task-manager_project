@@ -26,5 +26,4 @@ class Task(db.Model):
         # __repr__ to represent itself in the form of a string
         return "#{0} - Task: {1} | Urgent: {2}".format(
             self.id, self.task_name, self.is_urgent
-
         )
