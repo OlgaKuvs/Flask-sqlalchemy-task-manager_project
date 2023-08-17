@@ -26,3 +26,5 @@ document.addEventListener('DOMContentLoaded', function() {
   // collabsible initialization
   var collabsibles = document.querySelectorAll('.collapsible');
   M.Collapsible.init(collabsibles);
+
+ 
